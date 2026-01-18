@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="Interactive Map for Subnautica">
+    <meta name="keywords"    content="Subnautica, Map, Interactive">
+    <meta name="author"      content="Hendrik3303">
+
+    <title>Interactive Subnautica Map</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <div id="app-container">
+        <div id="map"></div>
+        <div id="coords-display">X: 0, Z: 0</div>
+        <aside id="sidebar">
+            <h2>Locations</h2>
+            <div id="filters" class="filter-group">
+                <label><input type="checkbox" id="filter-lifepods" checked> Lifepods</label>
+            </div>
+        </aside>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="scripts/data.js"></script>
+    <script src="scripts/script.js"></script>
+</body>
+</html>
