@@ -3,6 +3,15 @@ const map = L.map('map', {
     minZoom: -2
 });
 
+const lifepodIcon = L.icon({
+    iconUrl: 'images/icons/lifepod.png',
+    iconSize: [32, 32],
+    iconAnchor: [16, 16],
+    popupAnchor: [0, -16],
+    tooltipAnchor: [16, 0]
+});
+
+
 const imgUrl = 'SubnauticaMap.png';
 const imgBounds = [[-1024, -1024], [1024, 1024]];
 
@@ -28,12 +37,11 @@ function loadMarkers() {
                         <small>${lifepod.coordsinfo}</small><br>
                         <p>${lifepod.info}</p>`;
 
-        L.marker(lifepod.coords)
+        L.marker(lifepod.coords, { icon: lifepodIcon })
             .addTo(map)
             .bindPopup(popupContent, {
             maxWidth: 300,
-            minWidth: 200, 
-            className: 'custom-popup'
+            minWidth: 200
             })
             .bindTooltip(lifepod.name, {
             direction: 'right',
