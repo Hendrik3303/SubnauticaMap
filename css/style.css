@@ -88,7 +88,7 @@ body, html {
 }
 
 .leaflet-popup-content {
-    min-width: 200px;
+    min-width: 300px;
     max-width: 300px;
 }
 
@@ -137,4 +137,60 @@ body, html {
 
 .leaflet-tooltip-right::before {
     border-right-color: var(--accent-color) !important;
+}
+
+.popup-footer {
+    margin-top: 15px;
+    padding-top: 10px;
+    border-top: 1px solid #233554;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.track-container {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-size: 13px;
+    color: var(--accent-color);
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+
+.track-container input[type="checkbox"] {
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    border: 1px solid var(--accent-color);
+    border-radius: 2px;
+    background: transparent;
+    margin-right: 8px;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.track-container input[type="checkbox"]:checked {
+    background-color: var(--accent-color);
+    box-shadow: 0 0 8px var(--accent-color);
+}
+
+.track-container input[type="checkbox"]:checked::after {
+    content: '✔';
+    position: absolute;
+    color: var(--sidebar-color);
+    font-size: 12px;
+    left: 2px;
+    top: -1px;
+}
+
+.track-text {
+    opacity: 0.8;
+}
+
+.track-container:hover .track-text {
+    opacity: 1;
+    text-shadow: 0 0 5px var(--accent-color);
 }
