@@ -1,8 +1,10 @@
+/* This is the style file for the elements, honestly at somepoint I lost track where everything is so dont blame me for not commenting this file*/
 :root {
     --bg-color: #0a192f;
     --sidebar-color: #112240;
     --accent-color: #64ffda;
     --text-color: #ccd6f6;
+    --title-color: #cc8c15;
 }
 
 body, html {
@@ -21,6 +23,27 @@ body, html {
     background: var(--sidebar-color);
     padding: 20px;
     border-left: 2px solid var(--accent-color);
+}
+
+#sidebar h2 {
+    color: var(--title-color);
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    text-transform: uppercase;  
+    letter-spacing: 1px;    
+    padding-bottom: 0px;
+}
+
+.filter-group label {
+    color: #c4c4c4;
+    display: block;
+    margin: 10px 0;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.filter-group label:hover {
+    color: #fff;
 }
 
 #coords-display {

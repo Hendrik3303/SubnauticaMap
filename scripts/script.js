@@ -4,12 +4,13 @@ const map = L.map('map', {
 });
 
 const allMarkers = {};
-
 const imgUrl = 'SubnauticaMap.png';
 const imgBounds = [[-2048, -2048], [2048, 2048]];
+
 L.imageOverlay(imgUrl, imgBounds).addTo(map);
 map.fitBounds(imgBounds);
 
+// const for the custom icons on the map
 const lifepodIcon = L.icon({
     iconUrl: 'images/icons/lifepod.png',
     iconSize: [32, 32],
@@ -18,8 +19,10 @@ const lifepodIcon = L.icon({
     tooltipAnchor: [16, 0]
 });
 
+// const for the groups for our filter on the map
+const lifepodLayer = L.layerGroup().addTo(map);
 
-
+// this function will track if a marker is tracked or not and will set the corresponding opacity
 function toggleTrack(id, isChecked) {
     localStorage.setItem('track-' + id, isChecked);
     
@@ -30,6 +33,7 @@ function toggleTrack(id, isChecked) {
     setTimeout(() => {map.closePopup();}, 200);
 }
 
+// function to get the current coordinates of the mouse on the map
 function getCoordinates() {
     const coordsDisplay = document.getElementById('coords-display');
     map.on('mousemove', function(e) {
@@ -38,6 +42,7 @@ function getCoordinates() {
     });
 }
 
+// function which is used when you click on a marker to create the popup
 function createPopupContent(item, type) {
     const isTracked = localStorage.getItem('track-' + item.id) === 'true';
     
@@ -60,27 +65,30 @@ function createPopupContent(item, type) {
     return content;
 }
 
-// Function to load the markers from the data.js
+// Function to load the markers from the data.js and also creates the tooltip and popup etc.
 function loadMarkers() {
     mapData.lifepods.forEach(lifepod => {
         const isTracked = localStorage.getItem('track-' + lifepod.id) === 'true';
 
-        const marker = L.marker(lifepod.coords, { 
+        const [gameX, gameZ] = lifepod.coords;
+
+        const marker = L.marker([gameZ, gameX],{ 
             icon: lifepodIcon,
             opacity: isTracked ? 0.4 : 1.0
-        }).addTo(map);
+        }).addTo(lifepodLayer);
 
         allMarkers[lifepod.id] = marker;
 
         marker.bindPopup(() => createPopupContent(lifepod, 'lifepod'), {
             maxWidth: 300,
-            minWidth: 200
+            minWidth: 300
         });
 
         marker.bindTooltip(lifepod.name, { direction: 'right', opacity: 0.9 });
     });
 }
 
+// function for the centermap button 
 function loadCustomleafletControll() {
     map.whenReady(() => {
     const zoomContainer = document.querySelector('.leaflet-control-zoom');
@@ -99,8 +107,24 @@ function loadCustomleafletControll() {
 });
 }
 
+// function to apply the filters
+function initFilters() {
+    // filter for the lifepods
+    const lifepodCheckbox = document.getElementById('filter-lifepods');
+    if (lifepodCheckbox) {
+        lifepodCheckbox.addEventListener('change', function() {
+            if (this.checked) {
+                map.addLayer(lifepodLayer);
+            } else {
+                map.removeLayer(lifepodLayer);
+            }
+        });
+    }
+}
 
+// call the functions
 loadMarkers();
 getCoordinates();
 loadCustomleafletControll();
+initFilters();
 
