@@ -11,6 +11,9 @@ const mapData = {
         { id: "lp5", image: "images/lifepod5.jpg", name: "Lifepod 5 (Spawn)", coords: [0, 0], coordsinfo: "X:?,Y:2,Z:?" ,info: "Lifepod 5 will spawn randomly somewhere in the Safe Shallows, so this pin dosn't really matter" },
         { id: "lp6", image: "images/lifepod6.jpg", name: "Lifepod 6", coords: [364, 310], coordsinfo: "X:364,Y:-113,Z:310", info: "You will find lifepod 6 at this location"},
         { id: "lp3", image: "images/lifepod3.jpg", name: "Lifepod 3", coords: [-33, 410], coordsinfo: "X:-33,Y:-20,Z:410", info: "You will find lifepod 3 at this location"},
+    ],
+    pda:[
+        {id: "pda1"}
     ]
 };
 
